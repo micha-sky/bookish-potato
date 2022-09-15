@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 const ProductsPage = ({}) => {
   const data = useStaticQuery(graphql`
@@ -28,7 +28,7 @@ const ProductsPage = ({}) => {
   `)
   return (
     <Layout>
-      <div className="p-8 grid gap-x-8 gap-y-4 grid-cols-3">
+      <div className="p-8 grid gap-x-4 gap-y-4 grid-cols-3">
         {data.allShopifyProduct.edges.map(({ node }) => (
           <div key={node.shopifyId} className="flex">
             <h3>
@@ -36,7 +36,11 @@ const ProductsPage = ({}) => {
               {" - "}${node.priceRangeV2.minVariantPrice.amount}
             </h3>
             <p>{node.description}</p>
-            <img src={node.featuredImage.src} alt={node.title}></img>
+            <img
+              className="w-1/3"
+              src={node.featuredImage.src}
+              alt={node.title}
+            ></img>
           </div>
         ))}
       </div>
